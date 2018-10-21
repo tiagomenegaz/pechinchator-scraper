@@ -6,7 +6,7 @@ Project made with **Python** and **Scrapy**.
 
 ## How to run?
 
-_If you use Windows, the best way is you install some linux distro._
+_If you use Windows, the best way is install some linux distro._
 
 ### Virtualenv way
 
