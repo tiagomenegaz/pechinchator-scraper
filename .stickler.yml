@@ -1,0 +1,6 @@
+---
+linters:
+  flake8:
+    config: ./.flake8
+review:
+  fail_on_comments: true
