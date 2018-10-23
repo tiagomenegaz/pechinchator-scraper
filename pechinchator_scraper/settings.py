@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
@@ -22,3 +23,10 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Enable and configure HTTP caching
 HTTPCACHE_ENABLED = True
+
+# DB Settings
+
+MONGODB_SERVER = os.getenv("MONGODB_SERVER", "127.0.0.1")
+MONGODB_PORT = int(os.getenv("MONGODB_PORT", 27017))
+MONGODB_DB = os.getenv("MONGODB_DB")
+MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION")
