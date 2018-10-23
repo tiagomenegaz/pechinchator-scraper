@@ -25,7 +25,8 @@ DOWNLOADER_MIDDLEWARES = {
 HTTPCACHE_ENABLED = True
 
 ITEM_PIPELINES = {
-    'pechinchator_scraper.pipelines.db_pipelines.MongoDBPipeline': 300,
+    'pechinchator_scraper.pipelines.thread_pipelines.SanitizeContentHTMLPipeline': 300,
+    'pechinchator_scraper.pipelines.db_pipelines.MongoDBPipeline': 500,
 }
 
 # DB Settings
