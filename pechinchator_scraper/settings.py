@@ -24,6 +24,10 @@ DOWNLOADER_MIDDLEWARES = {
 # Enable and configure HTTP caching
 HTTPCACHE_ENABLED = True
 
+ITEM_PIPELINES = {
+    'pechinchator_scraper.pipelines.db_pipelines.MongoDBPipeline': 300,
+}
+
 # DB Settings
 
 MONGODB_SERVER = os.getenv("MONGODB_SERVER", "127.0.0.1")
