@@ -1,7 +1,7 @@
 import scrapy
 
 
-class Thread(scrapy.Item):
+class ThreadItem(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field()
     posted_at = scrapy.Field()
