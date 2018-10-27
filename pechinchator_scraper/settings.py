@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
@@ -26,12 +25,4 @@ HTTPCACHE_ENABLED = True
 
 ITEM_PIPELINES = {
     'pechinchator_scraper.pipelines.thread_pipelines.SanitizeContentHTMLPipeline': 300,
-    'pechinchator_scraper.pipelines.db_pipelines.MongoDBPipeline': 500,
 }
-
-# DB Settings
-
-MONGODB_SERVER = os.getenv("MONGODB_SERVER", "127.0.0.1")
-MONGODB_PORT = int(os.getenv("MONGODB_PORT", 27017))
-MONGODB_DB = os.getenv("MONGODB_DB")
-MONGODB_COLLECTION = os.getenv("MONGODB_COLLECTION")
