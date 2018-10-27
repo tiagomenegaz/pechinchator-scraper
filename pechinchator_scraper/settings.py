@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-from dotenv import load_dotenv
+from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
 
-load_dotenv()
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 BOT_NAME = 'pechinchator_scraper'
 
