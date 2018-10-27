@@ -3,3 +3,4 @@ fake-useragent==0.1.11
 html-sanitizer==1.6.2
 Scrapy==1.5.1
 scrapy-fake-useragent==1.1.0
+google-cloud-firestore==0.30.0

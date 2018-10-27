@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from pathlib import Path
-from dotenv import load_dotenv, find_dotenv
+import os
+from dotenv import load_dotenv
+from base64 import b64decode
 
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 
 BOT_NAME = 'pechinchator_scraper'
 
@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'pechinchator_scraper.spiders'
 ROBOTSTXT_OBEY = True
 
 # Configure a delay for requests for the same website
-DOWNLOAD_DELAY = 5
+DOWNLOAD_DELAY = 3
 
 # Enable or disable downloader middlewares
 DOWNLOADER_MIDDLEWARES = {
@@ -27,4 +27,11 @@ HTTPCACHE_ENABLED = True
 
 ITEM_PIPELINES = {
     'pechinchator_scraper.pipelines.thread_pipelines.SanitizeContentHTMLPipeline': 300,
+    'pechinchator_scraper.pipelines.db_pipelines.FirestorePipeline': 500,
 }
+
+# Firestore Settings
+
+GCS_PROJECT_ID = os.getenv("GCS_PROJECT_ID")
+GCS_CREDENTIALS = b64decode(os.getenv("GCS_CREDENTIALS_BASE64"))
+GCS_COLLECTION_NAME = os.getenv("GCS_COLLECTION_NAME")
