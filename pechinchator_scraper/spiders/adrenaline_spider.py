@@ -1,14 +1,16 @@
-import scrapy
-
 from pechinchator_scraper.items.thread_item import ThreadItem
+from pechinchator_scraper.spiders.base_thread_spider import BaseThreadSpider
 
 ADRENALINE_BASE_URL = "https://adrenaline.uol.com.br/forum/{}"
 
 
-class AdrenalineSpider(scrapy.Spider):
+class AdrenalineSpider(BaseThreadSpider):
     name = "adrenaline"
     allowed_domains = ["adrenaline.uol.com.br"]
     start_urls = ["https://adrenaline.uol.com.br/forum/forums/for-sale.221/"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def parse(self, response):
         thread_block_selectors = response.css(

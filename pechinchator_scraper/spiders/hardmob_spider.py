@@ -1,15 +1,18 @@
-import scrapy
 import re
 
 from pechinchator_scraper.items.thread_item import ThreadItem
+from pechinchator_scraper.spiders.base_thread_spider import BaseThreadSpider
 
 THREAD_VISITS_REGEX_PATTERN = r"\d+.*"
 
 
-class HardmobSpider(scrapy.Spider):
+class HardmobSpider(BaseThreadSpider):
     name = "hardmob"
     allowed_domains = ["www.hardmob.com.br"]
     start_urls = ["http://www.hardmob.com.br/promocoes/"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     def parse(self, response):
         thread_block_selectors = response.css("ol#threads > .threadbit")
