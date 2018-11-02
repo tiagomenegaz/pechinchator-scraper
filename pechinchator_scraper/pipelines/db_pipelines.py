@@ -29,8 +29,10 @@ class FirestorePipeline:
         if thread_exists:
             has_changes = self.__check_for_changes(params, thread_snapshot.to_dict())
             if has_changes:
+                params.update({"updated_at": firestore.SERVER_TIMESTAMP})
                 document.set(params, {"merge": True})
         else:
+            params.update({"created_at": firestore.SERVER_TIMESTAMP})
             document.set(params)
 
     @staticmethod
