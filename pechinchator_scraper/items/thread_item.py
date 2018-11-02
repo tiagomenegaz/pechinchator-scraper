@@ -10,3 +10,7 @@ class ThreadItem(scrapy.Item):
     visits_count = scrapy.Field()
     thread_id = scrapy.Field()
     source_id = scrapy.Field()
+
+    @property
+    def id(self):
+        return "-".join([self.get("thread_id"), self.get("source_id")])
