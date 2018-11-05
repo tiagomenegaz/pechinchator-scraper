@@ -1,3 +1,4 @@
+import pytz
 from datetime import datetime, timedelta
 from html_sanitizer import Sanitizer
 
@@ -17,6 +18,7 @@ class NormalizeThreadDatePipeline:
 
     def process_item(self, item, _spider):
         posted_at = item["posted_at"]
+        timezone = pytz.timezone('America/Sao_Paulo')
 
         if "às" in posted_at:
             posted_at = posted_at.replace(" às ", " ")
@@ -32,7 +34,7 @@ class NormalizeThreadDatePipeline:
         else:
             normalized_posted_at = self.__parse_date(posted_at)
 
-        item["posted_at"] = normalized_posted_at
+        item["posted_at"] = normalized_posted_at.astimezone(timezone)
 
         return item
 
