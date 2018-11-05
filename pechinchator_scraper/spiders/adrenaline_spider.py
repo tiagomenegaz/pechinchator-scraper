@@ -47,11 +47,16 @@ class AdrenalineSpider(BaseThreadSpider):
     def parse_thread_content(self, response):
         thread = response.meta["thread"]
         thread_date_block = response.css("#pageDescription .DateTime")
-        thread_date_block = thread_date_block.css(
-            "::attr(data-datestring), ::attr(data-timestring)"
-        )
 
-        thread["posted_at"] = " ".join(thread_date_block.extract())
+        if thread_date_block.css("[title]"):
+            thread_date = thread_date_block.css("::attr(title)").extract_first()
+        else:
+            thread_date = thread_date_block.css(
+                "::attr(data-datestring), ::attr(data-timestring)"
+            )
+            thread_date = " ".join(thread_date.extract())
+
+        thread["posted_at"] = thread_date
         thread["content_html"] = response.css(
             ".messageContent .messageText"
         ).extract_first()
