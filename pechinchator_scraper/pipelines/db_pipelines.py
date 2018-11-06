@@ -34,7 +34,10 @@ class FirestorePipeline:
                 params.update({"updated_at": firestore.SERVER_TIMESTAMP})
                 document.set(params, {"merge": True})
         else:
-            params.update({"created_at": firestore.SERVER_TIMESTAMP})
+            params.update({
+                "created_at": firestore.SERVER_TIMESTAMP,
+                "updated_at": firestore.SERVER_TIMESTAMP,
+            })
             document.set(params)
 
     @staticmethod
