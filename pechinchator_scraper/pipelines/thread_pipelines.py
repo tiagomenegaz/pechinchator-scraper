@@ -17,7 +17,7 @@ class SanitizeContentHTMLPipeline:
 class NormalizeThreadDatePipeline:
 
     def process_item(self, item, _spider):
-        posted_at = item["posted_at"]
+        posted_at = item["posted_at"].replace(u', ', u' ').strip()
         timezone = pytz.timezone('America/Sao_Paulo')
 
         if "às" in posted_at:

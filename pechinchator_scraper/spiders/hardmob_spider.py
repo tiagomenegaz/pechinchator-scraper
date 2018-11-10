@@ -9,7 +9,7 @@ THREAD_VISITS_REGEX_PATTERN = r"\d+.*"
 class HardmobSpider(BaseThreadSpider):
     name = "hardmob"
     allowed_domains = ["www.hardmob.com.br"]
-    start_urls = ["http://www.hardmob.com.br/promocoes/"]
+    start_urls = ["http://www.hardmob.com.br/forums/407-Promocoes"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
