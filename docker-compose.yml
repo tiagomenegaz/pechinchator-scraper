@@ -1,0 +1,11 @@
+version: "3"
+services:
+  crawler:
+    container_name: pechinchator-scraper
+    command: "python run.py"
+    build:
+      context: .
+    env_file:
+      - .env
+    volumes:
+      - .:/app
