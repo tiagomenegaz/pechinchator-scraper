@@ -1,16 +1,9 @@
-import json
-
-from google.oauth2 import service_account
 from google.cloud import firestore
+from pechinchator_scraper.firestore import FirestoreClient
 from scrapy.utils.project import get_project_settings
 
 settings = get_project_settings()
-
-credentials = service_account.Credentials.from_service_account_info(
-    info=json.loads(settings["GCS_CREDENTIALS"])
-)
-
-db = firestore.Client(credentials=credentials, project=settings["GCS_PROJECT_ID"])
+db = FirestoreClient.connect()
 
 
 class FirestorePipeline:
