@@ -5,6 +5,8 @@ from pechinchator_scraper.spiders.base_thread_spider import BaseThreadSpider
 
 THREAD_VISITS_REGEX_PATTERN = r"\d+.*"
 
+HARDMOB_BASE_URL = "https://www.hardmob.com.br/{}"
+
 
 class HardmobSpider(BaseThreadSpider):
     name = "hardmob"
@@ -20,7 +22,9 @@ class HardmobSpider(BaseThreadSpider):
         for thread_block in thread_block_selectors:
             thread = ThreadItem()
             thread_id = thread_block.css("li::attr(id)").extract_first()
-            url = thread_block.css("a.title::attr(href)").extract_first()
+            url = HARDMOB_BASE_URL.format(
+                thread_block.css("a.title::attr(href)").extract_first()
+            )
             title = thread_block.css("a.title::text").extract_first()
             posted_at = None
 
