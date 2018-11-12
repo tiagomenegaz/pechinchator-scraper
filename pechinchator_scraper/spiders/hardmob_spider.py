@@ -54,7 +54,7 @@ class HardmobSpider(BaseThreadSpider):
         thread = response.meta["thread"]
 
         details_block = response.css(".postdetails")
-        thread["content_html"] = details_block.css(".content").extract_first()
+        thread["content_html"] = details_block.css(".postcontent").extract_first()
         thread["posted_at"] = " ".join([
             response.css(".date::text").extract_first().strip(),
             response.css(".date > .time::text").extract_first(),
