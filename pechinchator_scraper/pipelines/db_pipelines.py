@@ -1,10 +1,12 @@
 from google.cloud import firestore
 from pechinchator_scraper.firestore import FirestoreClient
 from scrapy.utils.project import get_project_settings
+from tasks.users_watch_list import UsersWatchList
 
 settings = get_project_settings()
 db = FirestoreClient.connect()
 
+watchlist = UsersWatchList()
 
 class FirestorePipeline:
 
@@ -32,6 +34,7 @@ class FirestorePipeline:
                 "updated_at": firestore.SERVER_TIMESTAMP,
             })
             document.set(params)
+            watchlist.check(params)
 
     @staticmethod
     def __check_for_changes(old_values, new_values):
