@@ -51,7 +51,7 @@ class AdrenalineSpider(BaseThreadSpider):
             thread_id = thread_block.css("li::attr(id)").extract_first()
             url = ADRENALINE_BASE_URL.format(
                 title_block.css("a[title]::attr(href)").extract_first()
-            )
+            ).strip("/unread")
             title = title_block.css("a[title]::text").extract_first()
             replies, visits = stats_block.css("div.stats dd::text").extract()
 
