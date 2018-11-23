@@ -34,7 +34,8 @@ class AdrenalineSpider(BaseThreadSpider):
 
     def start_parse(self, response):
         for section_url in self.sections_urls:
-            yield Request(section_url, dont_filter=True, callback=self.parse_threads)
+            yield Request(section_url, dont_filter=True, callback=self.parse_threads,
+                          meta = {"dont_cache": True})
 
 
     def parse_threads(self, response):
