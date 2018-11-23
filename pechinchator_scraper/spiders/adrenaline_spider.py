@@ -1,5 +1,9 @@
 from pechinchator_scraper.items.thread_item import ThreadItem
 from pechinchator_scraper.spiders.base_thread_spider import BaseThreadSpider
+from scrapy import FormRequest, Request
+from scrapy.utils.project import get_project_settings
+
+settings = get_project_settings()
 
 ADRENALINE_BASE_URL = "https://adrenaline.uol.com.br/forum/{}"
 
@@ -7,12 +11,23 @@ ADRENALINE_BASE_URL = "https://adrenaline.uol.com.br/forum/{}"
 class AdrenalineSpider(BaseThreadSpider):
     name = "adrenaline"
     allowed_domains = ["adrenaline.uol.com.br"]
-    start_urls = ["https://adrenaline.uol.com.br/forum/forums/for-sale.221/"]
+    start_urls = ["https://adrenaline.uol.com.br/forum/login/"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def parse(self, response):
+        return FormRequest.from_response(
+            response,
+            formid="pageLogin",
+            formdata={'login': settings["ADRENALINE_LOGIN"], 'password': settings["ADRENALINE_PASSWORD"]},
+            callback=self.start_parse
+        )
+
+    def start_parse(self, response):
+        yield Request("https://adrenaline.uol.com.br/forum/forums/hardware-em-geral.265/", callback=self.parse_threads)
+
+    def parse_threads(self, response):
         thread_block_selectors = response.css(
             "li.discussionListItem.visible:not(.sticky):not(.locked)"
         )
