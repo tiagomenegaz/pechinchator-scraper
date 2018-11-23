@@ -42,4 +42,4 @@ def add_product_to_watch_list(user_ref, product_name):
         "added_at": firestore.SERVER_TIMESTAMP,
     })
 
-bot.polling()
+bot.polling(none_stop=True)
