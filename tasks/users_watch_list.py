@@ -33,8 +33,7 @@ class UsersWatchList:
                     formatted_message = self.MESSAGE.format(
                         product_name=product_ref.id,
                         title=product["title"],
-                        url=product["url"],
-                        content_html=product["content_html"]
+                        url=product.get("offer_url") or product.get("url"),
                     )
                     bot.send_message(
                         user_doc.id,

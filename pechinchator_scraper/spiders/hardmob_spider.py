@@ -59,5 +59,6 @@ class HardmobSpider(BaseThreadSpider):
             response.css(".date::text").extract_first().strip(),
             response.css(".date > .time::text").extract_first(),
         ])
+        thread["offer_url"] = details_block.css(".postcontent > a::attr(href)").extract_first()
 
         yield thread

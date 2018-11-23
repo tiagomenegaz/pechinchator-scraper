@@ -10,6 +10,7 @@ class ThreadItem(scrapy.Item):
     visits_count = scrapy.Field()
     thread_id = scrapy.Field()
     source_id = scrapy.Field()
+    offer_url = scrapy.Field()
 
     @property
     def id(self):

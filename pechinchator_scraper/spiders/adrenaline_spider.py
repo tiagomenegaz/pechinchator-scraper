@@ -86,5 +86,6 @@ class AdrenalineSpider(BaseThreadSpider):
         thread["content_html"] = response.css(
             ".messageContent .messageText"
         ).extract_first()
+        thread["offer_url"] = response.css(".messageContent .messageText > a::attr(href)").extract_first()
 
         yield thread

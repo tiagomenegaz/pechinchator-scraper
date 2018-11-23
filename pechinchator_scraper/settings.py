@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'pechinchator_scraper.spiders'
 ROBOTSTXT_OBEY = True
 
 # Configure a delay for requests for the same website
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 6
 
 # Enable or disable downloader middlewares
 DOWNLOADER_MIDDLEWARES = {
