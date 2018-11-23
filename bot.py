@@ -3,7 +3,7 @@ from google.cloud import firestore
 from dotenv import load_dotenv
 import telebot
 import os
-import unicodedata
+import time
 from tasks.utils import Utils
 
 load_dotenv()
@@ -42,4 +42,10 @@ def add_product_to_watch_list(user_ref, product_name):
         "added_at": firestore.SERVER_TIMESTAMP,
     })
 
-bot.polling(none_stop=True)
+bot.threaded=False
+
+while True:
+    try:
+        bot.polling(none_stop=True, interval=1)
+    except Exception as e:
+        time.sleep(5)
