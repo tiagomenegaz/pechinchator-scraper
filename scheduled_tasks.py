@@ -6,6 +6,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 from pechinchator_scraper.spiders.hardmob_spider import HardmobSpider
 from pechinchator_scraper.spiders.adrenaline_spider import AdrenalineSpider
+from pechinchator_scraper.spiders.promobit_spider import PromobitSpider
 
 scheduler = BlockingScheduler()
 
@@ -14,6 +15,7 @@ def crawl():
     spider_runner = CrawlerProcess(get_project_settings())
     spider_runner.crawl(HardmobSpider)
     spider_runner.crawl(AdrenalineSpider)
+    spider_runner.crawl(PromobitSpider)
     spider_runner.start()
 
 
