@@ -40,7 +40,7 @@ class NormalizeThreadDatePipeline:
 
     @staticmethod
     def __parse_date(date_str):
-        for date_fmt in ('%d-%m-%Y %H:%M', '%d/%m/%Y %H:%M'):
+        for date_fmt in ('%d-%m-%Y %H:%M', '%d/%m/%Y %H:%M', '%Y-%m-%d %H:%M:%S'):
             try:
                 return datetime.strptime(date_str, date_fmt)
             except ValueError:
