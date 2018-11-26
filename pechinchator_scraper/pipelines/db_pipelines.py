@@ -10,8 +10,13 @@ watchlist = UsersWatchList()
 
 class FirestorePipeline:
 
-    def __init__(self):
-        self.ref = db.collection(settings["GCS_COLLECTION_NAME"])
+    @classmethod
+    def from_crawler(cls, crawler):
+        if crawler.spider.name == "kabum":
+            cls.ref = db.collection("products_beta")
+        else:
+            cls.ref = db.collection(settings["GCS_COLLECTION_NAME"])
+        return cls()
 
     def process_item(self, item, _spider):
         thread_doc = self.ref.document(item.id)
