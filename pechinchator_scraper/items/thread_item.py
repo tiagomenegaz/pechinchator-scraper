@@ -11,6 +11,7 @@ class ThreadItem(scrapy.Item):
     thread_id = scrapy.Field()
     source_id = scrapy.Field()
     offer_url = scrapy.Field()
+    quantity = scrapy.Field()
 
     @property
     def id(self):

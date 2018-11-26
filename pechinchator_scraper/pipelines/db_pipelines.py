@@ -46,4 +46,7 @@ class FirestorePipeline:
         if old_values["replies_count"] != new_values["replies_count"]:
             return True
 
+        if old_values.get("quantities", 0) != new_values.get("quantities", 0):
+            return True
+
         return False

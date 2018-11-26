@@ -24,6 +24,7 @@ class KabumSpider(BaseThreadSpider):
             thread["url"] = "https://www.kabum.com.br/produto/{}".format(product["codigo"])
             price = "R$ " + str(product["vlr_oferta"])
             thread["title"] = product["produto"] + " " + price
+            thread["quantity"] = product["quantidade"]
             thread["posted_at"] = "2018-11-26 00:00:00"
             thread["content_html"] = "<span></span>"
             thread["source_id"] = "kabum"
