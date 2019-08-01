@@ -6,5 +6,5 @@ Scrapy==1.5.1
 scrapy-fake-useragent==1.1.0
 google-cloud-firestore==0.30.0
 Twisted==18.9.0
-pytz==2018.7
+pytz==2019.2
 pytelegrambotapi==3.6.6
